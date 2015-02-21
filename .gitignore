@@ -9,6 +9,8 @@ syntax: glob
 # maven
 target/
 *.versionsBackup
+*.releaseBackup
+release.properties
 build.number
 
 # common junk
