@@ -22,7 +22,7 @@ public abstract class GffrBaseScript extends Script
 				final Object obj = callback.instantiate(type);
 				final Closure dehydrate = closure.dehydrate();
 				dehydrate.setResolveStrategy(Closure.DELEGATE_FIRST);
-				dehydrate.setDelegate(obj);
+				dehydrate.setDelegate(new BindingDelegate(obj));
 				dehydrate.call();
 				return obj;
 			}

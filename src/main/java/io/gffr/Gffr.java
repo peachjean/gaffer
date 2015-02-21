@@ -1,6 +1,7 @@
 package io.gffr;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -24,7 +25,7 @@ public class Gffr
 		final Binding binding = new Binding();
 		binding.setProperty("callback", callback);
 		final GroovyShell shell = new GroovyShell(Gffr.class.getClassLoader(), binding, compilerConfiguration);
-		shell.evaluate(Files.newBufferedReader(config), config.getFileName().toString());
+		shell.evaluate(Files.newBufferedReader(config, StandardCharsets.UTF_8), config.getFileName().toString());
 	}
 
 	public static interface RegistrationCallback<BK>
