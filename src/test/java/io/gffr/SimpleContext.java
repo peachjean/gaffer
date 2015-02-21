@@ -5,27 +5,13 @@ import java.util.Map;
 
 import javax.inject.Provider;
 
-import io.gffr.Gffr.RegistrationCallback;
+import io.gffr.ctx.GffrContextBase;
 
 /**
  * TODO: Document this class
  */
-class SimpleContext implements RegistrationCallback<String>
+class SimpleContext extends GffrContextBase<String>
 {
-	private final Map<String, Provider<?>> bindings = new HashMap<>();
-
-	@Override
-	public void validateBindingType(final String bindingKey, final Class<?> type)
-	{
-		// do nothing
-	}
-
-	@Override
-	public void register(final String bindingKey, final Provider<?> provider)
-	{
-		this.bindings.put(bindingKey, provider);
-	}
-
 	@Override
 	public <T> T instantiate(final Class<T> type)
 	{
@@ -41,6 +27,8 @@ class SimpleContext implements RegistrationCallback<String>
 
 	public <T> T loadBindings(String key, Class<T> expectedType)
 	{
-		return expectedType.cast(this.bindings.get(key).get());
+		return expectedType.cast(this.access(key, expectedType).get());
 	}
+
+
 }

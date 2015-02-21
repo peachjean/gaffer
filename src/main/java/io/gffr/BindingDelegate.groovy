@@ -13,12 +13,12 @@
  */
 package io.gffr
 
-import groovy.transform.PackageScope
+import io.gffr.ctx.GffrContextAwareBase
 
 /**
  * @author Ceki G&uuml;c&uuml;
  */
-class BindingDelegate {
+class BindingDelegate<BK> extends GffrContextAwareBase<BK> {
 
   final Object component;
 
@@ -143,4 +143,9 @@ class BindingDelegate {
       return ""
 
   }
+
+	Object ref(BK bindingKey)
+	{
+		return this.context.access(bindingKey, Object).get();
+	}
 }

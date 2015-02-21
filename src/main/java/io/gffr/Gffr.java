@@ -9,6 +9,7 @@ import javax.inject.Provider;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
+import io.gffr.ctx.GffrContext;
 
 import org.codehaus.groovy.control.CompilerConfiguration;
 
@@ -18,24 +19,13 @@ import org.codehaus.groovy.control.CompilerConfiguration;
 public class Gffr
 {
 
-	public <BK> void loadConfiguredObjects(Path config, RegistrationCallback<BK> callback) throws IOException
+	public <BK> void loadConfiguredObjects(Path config, GffrContext<BK> context) throws IOException
 	{
 		final CompilerConfiguration compilerConfiguration = new CompilerConfiguration();
 		compilerConfiguration.setScriptBaseClass(GffrBaseScript.class.getName());
 		final Binding binding = new Binding();
-		binding.setProperty("callback", callback);
+		binding.setProperty("context", context);
 		final GroovyShell shell = new GroovyShell(Gffr.class.getClassLoader(), binding, compilerConfiguration);
 		shell.evaluate(Files.newBufferedReader(config, StandardCharsets.UTF_8), config.getFileName().toString());
 	}
-
-	public static interface RegistrationCallback<BK>
-	{
-		void validateBindingType(BK bindingKey, Class<?> type);
-
-		void register(BK bindingKey, Provider<?> provider);
-
-		<T> T instantiate(Class<T> type);
-	}
-
-
 }

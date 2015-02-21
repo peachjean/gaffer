@@ -8,4 +8,5 @@ bind("one", com.example.One) {
 bind("two", com.example.Two) {
 	name = "jackson"
 	size = 42
+	oneRef = ref("one")
 }

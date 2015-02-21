@@ -7,6 +7,7 @@ public class Two
 {
 	private String name;
 	private int size;
+	private One oneRef;
 
 	public String getName()
 	{
@@ -26,5 +27,15 @@ public class Two
 	public void setSize(final int size)
 	{
 		this.size = size;
+	}
+
+	public One getOneRef()
+	{
+		return oneRef;
+	}
+
+	public void setOneRef(final One oneRef)
+	{
+		this.oneRef = oneRef;
 	}
 }
