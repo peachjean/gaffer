@@ -148,4 +148,9 @@ class BindingDelegate<BK> extends GffrContextAwareBase<BK> {
 	{
 		return this.context.access(bindingKey, Object).get();
 	}
+
+	Object build(Class<?> type, Closure closure)
+	{
+		return GffrBaseScript.createProvider(this.context, type, closure).get()
+	}
 }

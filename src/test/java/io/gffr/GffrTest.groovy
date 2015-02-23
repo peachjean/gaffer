@@ -2,6 +2,7 @@ package io.gffr
 
 import com.example.One
 import com.example.Two
+import io.gffr.status.OnConsoleStatusListener
 import spock.lang.Specification
 
 import java.nio.file.Paths
@@ -16,6 +17,7 @@ class GffrTest extends Specification
 			def gffr = new Gffr();
 		and: "a simple context"
 			def ctx = new SimpleContext()
+			OnConsoleStatusListener.addNewInstanceToContext(ctx)
 		when: "i load simple config"
 			gffr.loadConfiguredObjects(Paths.get("src", "test", "data", "gffr-simple.groovy"), ctx)
 		then: "one has the expected values"
@@ -30,6 +32,9 @@ class GffrTest extends Specification
 			two.oneRef.alpha == 1
 			two.oneRef.beta == 2
 			two.oneRef.gamma == "fred"
+			two.oneNested.alpha == 6
+			two.oneNested.beta == 7
+			two.oneNested.gamma == "albert"
 
 	}
 }

@@ -8,6 +8,7 @@ public class Two
 	private String name;
 	private int size;
 	private One oneRef;
+	private One oneNested;
 
 	public String getName()
 	{
@@ -37,5 +38,15 @@ public class Two
 	public void setOneRef(final One oneRef)
 	{
 		this.oneRef = oneRef;
+	}
+
+	public One getOneNested()
+	{
+		return oneNested;
+	}
+
+	public void setOneNested(final One oneNested)
+	{
+		this.oneNested = oneNested;
 	}
 }
