@@ -5,40 +5,45 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.gffr</groupId>
-	<artifactId>gffr</artifactId>
+	<artifactId>project</artifactId>
+	<packaging>pom</packaging>
 	<version>0.1.0-SNAPSHOT</version>
+	<modules>
+		<module>gffr-core</module>
+	</modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
-			<version>2.4.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.spockframework</groupId>
-			<artifactId>spock-core</artifactId>
-			<version>0.7-groovy-2.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.github.goldin</groupId>
-			<artifactId>spock-extensions</artifactId>
-			<version>0.1.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>nl.jqno.equalsverifier</groupId>
-			<artifactId>equalsverifier</artifactId>
-			<version>1.4</version>
-			<scope>test</scope>
-		</dependency>
-
-	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-all</artifactId>
+				<version>2.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.spockframework</groupId>
+				<artifactId>spock-core</artifactId>
+				<version>0.7-groovy-2.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.goldin</groupId>
+				<artifactId>spock-extensions</artifactId>
+				<version>0.1.4</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>nl.jqno.equalsverifier</groupId>
+				<artifactId>equalsverifier</artifactId>
+				<version>1.4</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
