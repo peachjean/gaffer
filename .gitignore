@@ -1,6 +1,11 @@
 # use glob syntax.
 syntax: glob
 
+#gradle
+
+build/
+.gradle/
+
 # eclipse
 .classpath
 .project

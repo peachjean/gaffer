@@ -1,0 +1,4 @@
+rootProject.name = 'project'
+include ':gaffer-core'
+
+project(':gaffer-core').projectDir = "$rootDir/gaffer-core" as File
