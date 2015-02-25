@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/peachjean/gaffer.svg)](https://travis-ci.org/peachjean/gaffer)
+
 gaffer
 ------
 
