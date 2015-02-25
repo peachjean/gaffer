@@ -5,6 +5,7 @@
  * setup travis
  * setup coveralls
  * setup maven deployment
+ * setup gradle
  * write shiro.ini replacement
  * write guice integration
  * document in README
