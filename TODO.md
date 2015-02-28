@@ -3,7 +3,7 @@
 -----
 
  * ~~setup travis~~
- * setup coveralls
+ * ~~setup coveralls~~
  * setup maven deployment
  * ~~setup gradle~~
  * write shiro.ini replacement
