@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/peachjean/gaffer.svg)](https://travis-ci.org/peachjean/gaffer)
+[![Coverage Status](https://coveralls.io/repos/peachjean/gaffer/badge.svg)](https://coveralls.io/r/peachjean/gaffer)
 
 gaffer
 ------
