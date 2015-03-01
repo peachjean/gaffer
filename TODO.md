@@ -9,6 +9,8 @@
  * write shiro.ini replacement
  * write guice integration
  * document in README
+ * increase test coverage
+ * add vcs-based versioning to gradle build
 
 0.2.0
 -----
