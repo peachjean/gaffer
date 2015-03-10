@@ -7,29 +7,29 @@ import java.nio.file.Path;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
-import io.bunting.gaffer.ctx.GffrContext;
+import io.bunting.gaffer.ctx.GafferContext;
 
 import org.codehaus.groovy.control.CompilerConfiguration;
 
 /**
  * TODO: Document this class
  */
-public class Gffr
+public class Gaffer
 {
 	final Path configLocation;
 
-	public Gffr(final Path configLocation)
+	public Gaffer(final Path configLocation)
 	{
 		this.configLocation = configLocation;
 	}
 
-	public <BK> void loadConfiguredObjects(GffrContext<BK> context) throws IOException
+	public <BK> void loadConfiguredObjects(GafferContext<BK> context) throws IOException
 	{
 		final CompilerConfiguration compilerConfiguration = new CompilerConfiguration();
-		compilerConfiguration.setScriptBaseClass(GffrBaseScript.class.getName());
+		compilerConfiguration.setScriptBaseClass(GafferBaseScript.class.getName());
 		final Binding binding = new Binding();
 		binding.setProperty("context", context);
-		final GroovyShell shell = new GroovyShell(Gffr.class.getClassLoader(), binding, compilerConfiguration);
+		final GroovyShell shell = new GroovyShell(Gaffer.class.getClassLoader(), binding, compilerConfiguration);
 		shell.evaluate(Files.newBufferedReader(configLocation, StandardCharsets.UTF_8), configLocation.getFileName().toString());
 	}
 }

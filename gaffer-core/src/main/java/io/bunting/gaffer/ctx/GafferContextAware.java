@@ -13,11 +13,31 @@
  */
 package io.bunting.gaffer.ctx;
 
-public interface GffrLifeCycle
+
+import io.bunting.gaffer.status.Status;
+
+/**
+ * An object which has a context and add methods for updating internal status messages.
+ */
+public interface GafferContextAware<BK>
 {
 
-  void start();
-  void stop();
-  boolean isStarted();
+  void setContext(GafferContext<BK> context);
+
+  GafferContext<BK> getContext();
+
+  void addStatus(Status status);
+
+  void addInfo(String msg);
+
+  void addInfo(String msg, Throwable ex);
+
+  void addWarn(String msg);
+
+  void addWarn(String msg, Throwable ex);
+
+  void addError(String msg);
+
+  void addError(String msg, Throwable ex);
 
 }

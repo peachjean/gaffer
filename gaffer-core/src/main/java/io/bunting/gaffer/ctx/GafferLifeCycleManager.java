@@ -18,22 +18,22 @@ import java.util.Set;
 
 /**
  * An object that manages a collection of components that implement the
- * {@link GffrLifeCycle} interface.  Each component that is added to the manager
+ * {@link GafferLifeCycle} interface.  Each component that is added to the manager
  * will be stopped and removed from the manager when the manager is reset.
  *
  * @author Carl Harris
  */
-public class GffrLifeCycleManager
+public class GafferLifeCycleManager
 {
 
-  private final Set<GffrLifeCycle> components = new HashSet<GffrLifeCycle>();
+  private final Set<GafferLifeCycle> components = new HashSet<GafferLifeCycle>();
   
   /**
    * Registers a component with this manager.  
    * <p>
    * @param component the component whose life cycle is to be managed
    */
-  public void register(GffrLifeCycle component) {
+  public void register(GafferLifeCycle component) {
     components.add(component);
   }
   
@@ -43,7 +43,7 @@ public class GffrLifeCycleManager
    * All registered components are stopped and removed from the manager.
    */
   public void reset() {
-    for (GffrLifeCycle component : components) {
+    for (GafferLifeCycle component : components) {
       if (component.isStarted()) {
         component.stop();
       }

@@ -25,19 +25,20 @@ import io.bunting.gaffer.status.InfoStatus;
  * 
  * @author Ceki G&uuml;lc&uuml;
  */
-public class GffrContextAwareBase<BK> implements GffrContextAware<BK> {
+public class GafferContextAwareBase<BK> implements GafferContextAware<BK>
+{
   private int noContextWarning = 0;
-  protected GffrContext<BK> context;
+  protected GafferContext<BK> context;
   final Object declaredOrigin;
 
-  public GffrContextAwareBase() {
+  public GafferContextAwareBase() {
     declaredOrigin = this;
   }
-  public GffrContextAwareBase(GffrContextAware<BK> declaredOrigin) {
+  public GafferContextAwareBase(GafferContextAware<BK> declaredOrigin) {
     this.declaredOrigin = declaredOrigin;
   }
 
-  public void setContext(GffrContext<BK> context) {
+  public void setContext(GafferContext<BK> context) {
     if (this.context == null) {
       this.context = context;
     } else if (this.context != context) {
@@ -45,7 +46,7 @@ public class GffrContextAwareBase<BK> implements GffrContextAware<BK> {
     }
   }
 
-  public GffrContext<BK> getContext() {
+  public GafferContext<BK> getContext() {
     return this.context;
   }
 
