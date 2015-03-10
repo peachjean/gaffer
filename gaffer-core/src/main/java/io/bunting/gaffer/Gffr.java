@@ -16,14 +16,20 @@ import org.codehaus.groovy.control.CompilerConfiguration;
  */
 public class Gffr
 {
+	final Path configLocation;
 
-	public <BK> void loadConfiguredObjects(Path config, GffrContext<BK> context) throws IOException
+	public Gffr(final Path configLocation)
+	{
+		this.configLocation = configLocation;
+	}
+
+	public <BK> void loadConfiguredObjects(GffrContext<BK> context) throws IOException
 	{
 		final CompilerConfiguration compilerConfiguration = new CompilerConfiguration();
 		compilerConfiguration.setScriptBaseClass(GffrBaseScript.class.getName());
 		final Binding binding = new Binding();
 		binding.setProperty("context", context);
 		final GroovyShell shell = new GroovyShell(Gffr.class.getClassLoader(), binding, compilerConfiguration);
-		shell.evaluate(Files.newBufferedReader(config, StandardCharsets.UTF_8), config.getFileName().toString());
+		shell.evaluate(Files.newBufferedReader(configLocation, StandardCharsets.UTF_8), configLocation.getFileName().toString());
 	}
 }

@@ -5,6 +5,7 @@ import com.example.Two
 import io.bunting.gaffer.status.OnConsoleStatusListener
 import spock.lang.Specification
 
+import java.nio.file.Path
 import java.nio.file.Paths
 
 /**
@@ -14,12 +15,13 @@ class GffrTest extends Specification
 {
 	def "test simple"() {
 		given: "a gffr"
-			def gffr = new Gffr();
+			def gfrLocation = Paths.get("src", "test", "data", "gaffer-simple.groovy")
+			def gffr = new Gffr(gfrLocation);
 		and: "a simple context"
 			def ctx = new SimpleContext()
 			OnConsoleStatusListener.addNewInstanceToContext(ctx)
 		when: "i load simple config"
-			gffr.loadConfiguredObjects(Paths.get("src", "test", "data", "gaffer-simple.groovy"), ctx)
+			gffr.loadConfiguredObjects(ctx)
 		then: "one has the expected values"
 			def one = ctx.loadBindings("one", One)
 			one.alpha == 1
