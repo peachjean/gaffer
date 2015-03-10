@@ -15,7 +15,7 @@ package io.bunting.gaffer.status;
 
 import java.io.PrintStream;
 
-import io.bunting.gaffer.ctx.GffrContext;
+import io.bunting.gaffer.ctx.GafferContext;
 
 /**
  * Print all new incoming status messages on the console (System.out).
@@ -36,7 +36,7 @@ public class OnConsoleStatusListener extends OnPrintStreamStatusListenerBase {
    * @param context
    * @since 1.0.1
    */
-  static public void addNewInstanceToContext(GffrContext context) {
+  static public void addNewInstanceToContext(GafferContext context) {
     OnConsoleStatusListener onConsoleStatusListener = new OnConsoleStatusListener();
     onConsoleStatusListener.setContext(context);
     onConsoleStatusListener.start();

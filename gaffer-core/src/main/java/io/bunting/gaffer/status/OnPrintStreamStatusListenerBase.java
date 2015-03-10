@@ -16,14 +16,14 @@ package io.bunting.gaffer.status;
 import java.io.PrintStream;
 import java.util.List;
 
-import io.bunting.gaffer.ctx.GffrLifeCycle;
-import io.bunting.gaffer.ctx.GffrContextAwareBase;
+import io.bunting.gaffer.ctx.GafferLifeCycle;
+import io.bunting.gaffer.ctx.GafferContextAwareBase;
 
 /**
  *  Print all new incoming status messages on the on the designated PrintStream.
  * @author Ceki G&uuml;c&uuml;
  */
-public abstract class OnPrintStreamStatusListenerBase extends GffrContextAwareBase implements StatusListener, GffrLifeCycle
+public abstract class OnPrintStreamStatusListenerBase extends GafferContextAwareBase implements StatusListener, GafferLifeCycle
 {
 
   boolean isStarted = false;

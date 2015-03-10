@@ -1,11 +1,11 @@
 package io.bunting.gaffer;
 
-import io.bunting.gaffer.ctx.GffrContextBase;
+import io.bunting.gaffer.ctx.GafferContextBase;
 
 /**
  * TODO: Document this class
  */
-class SimpleContext extends GffrContextBase<String>
+class SimpleContext extends GafferContextBase<String>
 {
 	@Override
 	public <T> T instantiate(final Class<T> type)

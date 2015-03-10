@@ -5,18 +5,17 @@ import com.example.Two
 import io.bunting.gaffer.status.OnConsoleStatusListener
 import spock.lang.Specification
 
-import java.nio.file.Path
 import java.nio.file.Paths
 
 /**
  * TODO: Document this class
  */
-class GffrTest extends Specification
+class GafferTest extends Specification
 {
 	def "test simple"() {
 		given: "a gffr"
 			def gfrLocation = Paths.get("src", "test", "data", "gaffer-simple.groovy")
-			def gffr = new Gffr(gfrLocation);
+			def gffr = new Gaffer(gfrLocation);
 		and: "a simple context"
 			def ctx = new SimpleContext()
 			OnConsoleStatusListener.addNewInstanceToContext(ctx)

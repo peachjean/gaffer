@@ -1,6 +1,6 @@
 package io.bunting.gaffer.shiro;
 
-import io.bunting.gaffer.Gffr;
+import io.bunting.gaffer.Gaffer;
 
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.util.Destroyable;
@@ -19,21 +19,21 @@ public class GafferWebEnvironment extends ResourceBasedWebEnvironment implements
 
 	private static final Logger log = LoggerFactory.getLogger(IniWebEnvironment.class);
 
-	private Gffr gaffer;
+	private Gaffer gaffer;
 
 	@Override
 	public void init() throws ShiroException
 	{
-		final Gffr gffr = getGaffer();
+		final Gaffer gffr = getGaffer();
 //		gffr.loadConfiguredObjects();
 	}
 
-	public Gffr getGaffer()
+	public Gaffer getGaffer()
 	{
 		return gaffer;
 	}
 
-	public void setGaffer(final Gffr gaffer)
+	public void setGaffer(final Gaffer gaffer)
 	{
 		this.gaffer = gaffer;
 	}

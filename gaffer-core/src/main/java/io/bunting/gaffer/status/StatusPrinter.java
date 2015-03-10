@@ -17,7 +17,7 @@ import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.List;
 
-import io.bunting.gaffer.ctx.GffrContext;
+import io.bunting.gaffer.ctx.GafferContext;
 import io.bunting.gaffer.util.CachingDateFormatter;
 import io.bunting.gaffer.util.CoreConstants;
 import io.bunting.gaffer.util.ThrowableToStringArray;
@@ -41,7 +41,7 @@ public class StatusPrinter
    *
    * @param context
    */
-  public static void printInCaseOfErrorsOrWarnings(GffrContext context) {
+  public static void printInCaseOfErrorsOrWarnings(GafferContext context) {
     printInCaseOfErrorsOrWarnings(context, 0);
   }
 
@@ -51,7 +51,7 @@ public class StatusPrinter
    *
    * @param context
    */
-  public static void printInCaseOfErrorsOrWarnings(GffrContext context, long threshold) {
+  public static void printInCaseOfErrorsOrWarnings(GafferContext context, long threshold) {
     if (context == null) {
       throw new IllegalArgumentException("Context argument cannot be null");
     }
@@ -74,7 +74,7 @@ public class StatusPrinter
    *
    * @param context
    */
-  public static void printIfErrorsOccured(GffrContext context) {
+  public static void printIfErrorsOccured(GafferContext context) {
     if (context == null) {
       throw new IllegalArgumentException("Context argument cannot be null");
     }
@@ -96,7 +96,7 @@ public class StatusPrinter
    *
    * @param context
    */
-  public static void print(GffrContext context) {
+  public static void print(GafferContext context) {
     print(context, 0);
   }
 
@@ -104,7 +104,7 @@ public class StatusPrinter
    * Print context's status data with a timestamp higher than the threshold.
    * @param context
    */
-   public static void print(GffrContext context, long threshold) {
+   public static void print(GafferContext context, long threshold) {
      if (context == null) {
        throw new IllegalArgumentException("Context argument cannot be null");
      }

@@ -23,7 +23,7 @@ import io.bunting.gaffer.status.StatusManager;
  * @author Ceki Gulcu
  * 
  */
-public interface GffrContext<BK>
+public interface GafferContext<BK>
 {
 
 	/**
@@ -108,6 +108,6 @@ public interface GffrContext<BK>
    * 
    * @param component the subject component
    */
-  void register(GffrLifeCycle component);
+  void register(GafferLifeCycle component);
   
 }

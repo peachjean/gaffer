@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.bunting.gaffer.ctx.GffrContext;
+import io.bunting.gaffer.ctx.GafferContext;
 
 public class StatusUtil
 {
@@ -30,7 +30,7 @@ public class StatusUtil
     this.sm = sm;
   }
 
-  public StatusUtil(GffrContext context) {
+  public StatusUtil(GafferContext context) {
     this.sm = context.getStatusManager();
   }
 
@@ -43,7 +43,7 @@ public class StatusUtil
    * @return true if one or more StatusListeners registered, false otherwise
    * @since 1.0.8
    */
-  static public boolean contextHasStatusListener(GffrContext context) {
+  static public boolean contextHasStatusListener(GafferContext context) {
     StatusManager sm = context.getStatusManager();
     if(sm == null)
       return false;

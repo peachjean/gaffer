@@ -24,7 +24,8 @@ import io.bunting.gaffer.status.StatusManager;
 import io.bunting.gaffer.util.CoreConstants;
 import io.bunting.gaffer.util.GffrLock;
 
-public abstract class GffrContextBase<BK> implements GffrContext<BK>, GffrLifeCycle {
+public abstract class GafferContextBase<BK> implements GafferContext<BK>, GafferLifeCycle
+{
 
 	private long birthTime = System.currentTimeMillis();
 
@@ -39,7 +40,7 @@ public abstract class GffrContextBase<BK> implements GffrContext<BK>, GffrLifeCy
   GffrLock configurationLock = new GffrLock();
 
   private volatile ExecutorService executorService;
-  private GffrLifeCycleManager lifeCycleManager;
+  private GafferLifeCycleManager lifeCycleManager;
   private boolean started;
   
   public StatusManager getStatusManager() {
@@ -152,7 +153,7 @@ public abstract class GffrContextBase<BK> implements GffrContext<BK>, GffrLifeCy
     return birthTime;
   }
 
-  public void register(GffrLifeCycle component) {
+  public void register(GafferLifeCycle component) {
     getLifeCycleManager().register(component);
   }
 
@@ -160,7 +161,7 @@ public abstract class GffrContextBase<BK> implements GffrContext<BK>, GffrLifeCy
    * Gets the life cycle manager for this context.
    * <p>
    * The default implementation lazily initializes an instance of
-   * {@link GffrLifeCycleManager}.  Subclasses may override to provide a custom
+   * {@link GafferLifeCycleManager}.  Subclasses may override to provide a custom
    * manager implementation, but must take care to return the same manager
    * object for each call to this method.
    * <p>
@@ -168,9 +169,9 @@ public abstract class GffrContextBase<BK> implements GffrContext<BK>, GffrLifeCy
    * 
    * @return manager object 
    */
-  synchronized GffrLifeCycleManager getLifeCycleManager() {
+  synchronized GafferLifeCycleManager getLifeCycleManager() {
     if (lifeCycleManager == null) {
-      lifeCycleManager = new GffrLifeCycleManager();
+      lifeCycleManager = new GafferLifeCycleManager();
     }
     return lifeCycleManager;
   }

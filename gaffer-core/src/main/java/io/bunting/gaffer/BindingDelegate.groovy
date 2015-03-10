@@ -13,12 +13,12 @@
  */
 package io.bunting.gaffer
 
-import io.bunting.gaffer.ctx.GffrContextAwareBase
+import io.bunting.gaffer.ctx.GafferContextAwareBase
 
 /**
  * @author Ceki G&uuml;c&uuml;
  */
-class BindingDelegate<BK> extends GffrContextAwareBase<BK>
+class BindingDelegate<BK> extends GafferContextAwareBase<BK>
 {
 
   final Object component;
@@ -152,6 +152,6 @@ class BindingDelegate<BK> extends GffrContextAwareBase<BK>
 
 	Object build(Class<?> type, Closure closure)
 	{
-		return GffrBaseScript.createProvider(this.context, type, closure).get()
+		return GafferBaseScript.createProvider(this.context, type, closure).get()
 	}
 }
