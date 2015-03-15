@@ -4,6 +4,7 @@ dependencies {
 	compile project(":gaffer-core")
 	compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.2.3'
 	compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.2.3'
+	compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
 	testCompile group: 'org.spockframework', name: 'spock-core', version:'0.7-groovy-2.0'
 	testCompile group: 'com.github.goldin', name: 'spock-extensions', version:'0.1.4'
 	testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version:'1.4'

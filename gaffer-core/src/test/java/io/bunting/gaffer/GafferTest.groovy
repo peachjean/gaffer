@@ -15,7 +15,7 @@ class GafferTest extends Specification
 	def "test simple"() {
 		given: "a gffr"
 			def gfrLocation = Paths.get("src", "test", "data", "gaffer-simple.groovy")
-			def gffr = new Gaffer(gfrLocation);
+			def gffr = Gaffer.fromPath(gfrLocation);
 		and: "a simple context"
 			def ctx = new SimpleContext()
 			OnConsoleStatusListener.addNewInstanceToContext(ctx)
