@@ -7,15 +7,16 @@
  * setup maven deployment
  * ~~setup gradle~~
  * write shiro.ini replacement
- * write guice integration
  * document in README
  * increase test coverage
  * add vcs-based versioning to gradle build
+ * add custom binding methods
+ * "simple" backend
 
 0.2.0
 -----
 
- * add custom binding methods
+ * write guice backend
  * add jetty config
 
 0.3.0
@@ -26,7 +27,6 @@
 Future
 ------
 
- * allow for parameters in assisted constructor injection
- * spring support
+ * spring backend
  * logback implementation
- * dagger support
+ * dagger backend
