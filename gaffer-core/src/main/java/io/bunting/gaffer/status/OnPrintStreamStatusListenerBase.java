@@ -20,11 +20,11 @@ import io.bunting.gaffer.ctx.GafferLifeCycle;
 import io.bunting.gaffer.ctx.GafferContextAwareBase;
 
 /**
- *  Print all new incoming status messages on the on the designated PrintStream.
+ * Print all new incoming status messages on the on the designated PrintStream.
+ *
  * @author Ceki G&uuml;c&uuml;
  */
-public abstract class OnPrintStreamStatusListenerBase extends GafferContextAwareBase implements StatusListener, GafferLifeCycle
-{
+public abstract class OnPrintStreamStatusListenerBase extends GafferContextAwareBase implements StatusListener, GafferLifeCycle {
 
   boolean isStarted = false;
 
@@ -34,6 +34,7 @@ public abstract class OnPrintStreamStatusListenerBase extends GafferContextAware
 
   /**
    * The PrintStream used by derived classes
+   *
    * @return
    */
   abstract protected PrintStream getPrintStream();
@@ -54,7 +55,7 @@ public abstract class OnPrintStreamStatusListenerBase extends GafferContextAware
    * Print status messages retrospectively
    */
   private void retrospectivePrint() {
-    if(context == null)
+    if (context == null)
       return;
     long now = System.currentTimeMillis();
     StatusManager sm = context.getStatusManager();

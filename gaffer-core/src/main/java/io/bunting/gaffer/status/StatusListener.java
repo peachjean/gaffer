@@ -16,10 +16,9 @@ package io.bunting.gaffer.status;
 /**
  * A StatusListener registered with logback context's {@link StatusManager} will
  * receive notification of every incoming {@link Status status} message.
- * 
+ *
  * @author Ceki G&uuml;lc&uuml;
  */
-public interface StatusListener
-{
+public interface StatusListener {
   void addStatusEvent(Status status);
 }

@@ -18,8 +18,7 @@ import io.bunting.gaffer.ctx.GafferContextAwareBase
 /**
  * @author Ceki G&uuml;c&uuml;
  */
-class BindingDelegate<BK> extends GafferContextAwareBase<BK>
-{
+class BindingDelegate<BK> extends GafferContextAwareBase<BK> {
 
   final Object component;
 
@@ -69,13 +68,13 @@ class BindingDelegate<BK> extends GafferContextAwareBase<BK>
   }
 
   void cascadeFields(BindingDelegate subDelegate) {
-    for (String k: fieldsToCascade) {
+    for (String k : fieldsToCascade) {
       subDelegate.metaClass."${k}" = this."${k}"
     }
   }
 
   void injectParent(Object subComponent) {
-    if(subComponent.hasProperty("parent")) {
+    if (subComponent.hasProperty("parent")) {
       subComponent.parent = component;
     }
   }
@@ -145,13 +144,11 @@ class BindingDelegate<BK> extends GafferContextAwareBase<BK>
 
   }
 
-	Object ref(BK bindingKey)
-	{
-		return this.context.access(bindingKey, Object).get();
-	}
+  Object ref(BK bindingKey) {
+    return this.context.access(bindingKey, Object).get();
+  }
 
-	Object build(Class<?> type, Closure closure)
-	{
-		return GafferBaseScript.createProvider(this.context, type, closure).get()
-	}
+  Object build(Class<?> type, Closure closure) {
+    return GafferBaseScript.createProvider(this.context, type, closure).get()
+  }
 }

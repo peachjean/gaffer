@@ -18,10 +18,10 @@ import java.util.List;
 
 /**
  * CyclicBuffer holds values in a cyclic array.
- * 
+ * <p/>
  * <p>It allows read access to any element in the buffer not just the first or
  * last element.
- * 
+ *
  * @author Ceki G&uuml;lc&uuml;
  */
 public class CyclicBuffer<E> {
@@ -34,27 +34,26 @@ public class CyclicBuffer<E> {
 
   /**
    * Instantiate a new CyclicBuffer of at most <code>maxSize</code> events.
-   * 
+   * <p/>
    * The <code>maxSize</code> argument must a positive integer.
-   * 
-   * @param maxSize
-   *                The maximum number of elements in the buffer.
+   *
+   * @param maxSize The maximum number of elements in the buffer.
    */
   public CyclicBuffer(int maxSize) throws IllegalArgumentException {
     if (maxSize < 1) {
       throw new IllegalArgumentException("The maxSize argument (" + maxSize
-          + ") is not a positive integer.");
+              + ") is not a positive integer.");
     }
     init(maxSize);
   }
 
   public CyclicBuffer(CyclicBuffer<E> other) {
-   this.maxSize = other.maxSize;
-   ea = (E[]) new Object[maxSize];
-   System.arraycopy(other.ea, 0, this.ea, 0, maxSize);
-   this.last = other.last;
-   this.first = other.first;
-   this.numElems = other.numElems;
+    this.maxSize = other.maxSize;
+    ea = (E[]) new Object[maxSize];
+    System.arraycopy(other.ea, 0, this.ea, 0, maxSize);
+    this.last = other.last;
+    this.first = other.first;
+    this.numElems = other.numElems;
   }
 
   @SuppressWarnings("unchecked")
@@ -75,7 +74,6 @@ public class CyclicBuffer<E> {
 
   /**
    * Add an <code>event</code> as the last event in the buffer.
-   * 
    */
   public void add(E event) {
     ea[last] = event;
@@ -119,10 +117,10 @@ public class CyclicBuffer<E> {
     }
     return r;
   }
-  
+
   public List<E> asList() {
     List<E> tList = new ArrayList<E>();
-    for(int i = 0; i < length(); i++) {
+    for (int i = 0; i < length(); i++) {
       tList.add(get(i));
     }
     return tList;
@@ -138,15 +136,14 @@ public class CyclicBuffer<E> {
 
   /**
    * Resize the cyclic buffer to <code>newSize</code>.
-   * 
-   * @throws IllegalArgumentException
-   *                 if <code>newSize</code> is negative.
+   *
+   * @throws IllegalArgumentException if <code>newSize</code> is negative.
    */
   @SuppressWarnings("unchecked")
   public void resize(int newSize) {
     if (newSize < 0) {
       throw new IllegalArgumentException("Negative array size [" + newSize
-          + "] not allowed.");
+              + "] not allowed.");
     }
     if (newSize == numElems)
       return; // nothing to do

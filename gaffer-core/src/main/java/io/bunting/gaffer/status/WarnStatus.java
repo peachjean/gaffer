@@ -14,10 +14,9 @@
 package io.bunting.gaffer.status;
 
 
-
 public class WarnStatus extends StatusBase {
 
- 
+
   public WarnStatus(String msg, Object origin) {
     super(WARN, msg, origin);
   }
@@ -26,4 +25,4 @@ public class WarnStatus extends StatusBase {
     super(WARN, msg, origin, t);
   }
 
- }
+}

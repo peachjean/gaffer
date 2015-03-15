@@ -19,8 +19,7 @@ import io.bunting.gaffer.status.Status;
 /**
  * An object which has a context and add methods for updating internal status messages.
  */
-public interface GafferContextAware<BK>
-{
+public interface GafferContextAware<BK> {
 
   void setContext(GafferContext<BK> context);
 

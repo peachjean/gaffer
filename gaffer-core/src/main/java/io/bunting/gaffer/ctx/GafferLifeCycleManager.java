@@ -23,23 +23,23 @@ import java.util.Set;
  *
  * @author Carl Harris
  */
-public class GafferLifeCycleManager
-{
+public class GafferLifeCycleManager {
 
   private final Set<GafferLifeCycle> components = new HashSet<GafferLifeCycle>();
-  
+
   /**
-   * Registers a component with this manager.  
-   * <p>
+   * Registers a component with this manager.
+   * <p/>
+   *
    * @param component the component whose life cycle is to be managed
    */
   public void register(GafferLifeCycle component) {
     components.add(component);
   }
-  
+
   /**
    * Resets this manager.
-   * <p>
+   * <p/>
    * All registered components are stopped and removed from the manager.
    */
   public void reset() {
@@ -50,5 +50,5 @@ public class GafferLifeCycleManager
     }
     components.clear();
   }
- 
+
 }

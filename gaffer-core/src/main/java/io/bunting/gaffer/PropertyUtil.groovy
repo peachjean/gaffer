@@ -65,7 +65,7 @@ class PropertyUtil {
   }
 
   static String upperCaseFirstLetter(String s) {
-    return transformFirstLetter(s, {String it -> it.toUpperCase()})
+    return transformFirstLetter(s, { String it -> it.toUpperCase() })
   }
 
 }

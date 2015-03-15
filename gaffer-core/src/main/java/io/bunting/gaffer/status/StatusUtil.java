@@ -21,8 +21,7 @@ import java.util.regex.Pattern;
 
 import io.bunting.gaffer.ctx.GafferContext;
 
-public class StatusUtil
-{
+public class StatusUtil {
 
   StatusManager sm;
 
@@ -45,10 +44,10 @@ public class StatusUtil
    */
   static public boolean contextHasStatusListener(GafferContext context) {
     StatusManager sm = context.getStatusManager();
-    if(sm == null)
+    if (sm == null)
       return false;
     List<StatusListener> listeners = sm.getCopyOfStatusListenerList();
-    if(listeners == null || listeners.size() == 0)
+    if (listeners == null || listeners.size() == 0)
       return false;
     else
       return true;
@@ -78,7 +77,7 @@ public class StatusUtil
   }
 
   public void addError(Object caller, String msg,
-      Throwable t) {
+                       Throwable t) {
     addStatus(new ErrorStatus(msg, caller, t));
   }
 

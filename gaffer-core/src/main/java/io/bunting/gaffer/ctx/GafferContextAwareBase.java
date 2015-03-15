@@ -22,11 +22,10 @@ import io.bunting.gaffer.status.InfoStatus;
 /**
  * A helper class that implements ContextAware methods. A class can implement
  * the ContextAware interface by deriving from this class.
- * 
+ *
  * @author Ceki G&uuml;lc&uuml;
  */
-public class GafferContextAwareBase<BK> implements GafferContextAware<BK>
-{
+public class GafferContextAwareBase<BK> implements GafferContextAware<BK> {
   private int noContextWarning = 0;
   protected GafferContext<BK> context;
   final Object declaredOrigin;
@@ -34,6 +33,7 @@ public class GafferContextAwareBase<BK> implements GafferContextAware<BK>
   public GafferContextAwareBase() {
     declaredOrigin = this;
   }
+
   public GafferContextAwareBase(GafferContextAware<BK> declaredOrigin) {
     this.declaredOrigin = declaredOrigin;
   }
@@ -60,9 +60,9 @@ public class GafferContextAwareBase<BK> implements GafferContextAware<BK>
   /**
    * The declared origin of status messages. By default 'this'. Derived classes may override this
    * method to declare other origin.
-   * 
+   *
    * @return the declared origin, by default 'this'
-   */ 
+   */
   protected Object getDeclaredOrigin() {
     return declaredOrigin;
   }

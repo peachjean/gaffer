@@ -24,10 +24,9 @@ import io.bunting.gaffer.status.StatusManager;
 import io.bunting.gaffer.util.CoreConstants;
 import io.bunting.gaffer.util.GffrLock;
 
-public abstract class GafferContextBase<BK> implements GafferContext<BK>, GafferLifeCycle
-{
+public abstract class GafferContextBase<BK> implements GafferContext<BK>, GafferLifeCycle {
 
-	private long birthTime = System.currentTimeMillis();
+  private long birthTime = System.currentTimeMillis();
 
   private String name;
   private StatusManager sm = new BasicStatusManager();
@@ -35,37 +34,34 @@ public abstract class GafferContextBase<BK> implements GafferContext<BK>, Gaffer
   // when it changes so that a new instance of propertyMap can be
   // serialized. For the time being, we ignore this shortcoming.
   Map<String, String> propertyMap = new HashMap<String, String>();
-	Map<BK, Provider<?>> providerMap = new HashMap<>();
+  Map<BK, Provider<?>> providerMap = new HashMap<>();
 
   GffrLock configurationLock = new GffrLock();
 
   private volatile ExecutorService executorService;
   private GafferLifeCycleManager lifeCycleManager;
   private boolean started;
-  
+
   public StatusManager getStatusManager() {
     return sm;
   }
 
-	@Override
-	public void validateBindingType(final Object bindingKey, final Class type)
-	{
-		// do nothing
-	}
+  @Override
+  public void validateBindingType(final Object bindingKey, final Class type) {
+    // do nothing
+  }
 
-	@Override
-	public void register(final BK bindingKey, final Provider<?> provider)
-	{
-		this.providerMap.put(bindingKey, provider);
-	}
+  @Override
+  public void register(final BK bindingKey, final Provider<?> provider) {
+    this.providerMap.put(bindingKey, provider);
+  }
 
-	@Override
-	public <T> Provider<T> access(final BK bindingKey, final Class<T> type)
-	{
-		return (Provider<T>) this.providerMap.get(bindingKey);
-	}
+  @Override
+  public <T> Provider<T> access(final BK bindingKey, final Class<T> type) {
+    return (Provider<T>) this.providerMap.get(bindingKey);
+  }
 
-	/**
+  /**
    * Set the {@link StatusManager} for this context. Note that by default this
    * context is initialized with a {@link BasicStatusManager}. A null value for
    * the 'statusManager' argument is not allowed.
@@ -111,7 +107,7 @@ public abstract class GafferContextBase<BK> implements GafferContext<BK>, Gaffer
     // uses (mostly in tests) that would need to be modified.
     started = true;
   }
-  
+
   public void stop() {
     started = false;
   }
@@ -127,7 +123,7 @@ public abstract class GafferContextBase<BK> implements GafferContext<BK>, Gaffer
   public void reset() {
     getLifeCycleManager().reset();
     propertyMap.clear();
-	  providerMap.clear();
+    providerMap.clear();
   }
 
   /**
@@ -159,15 +155,15 @@ public abstract class GafferContextBase<BK> implements GafferContext<BK>, Gaffer
 
   /**
    * Gets the life cycle manager for this context.
-   * <p>
+   * <p/>
    * The default implementation lazily initializes an instance of
    * {@link GafferLifeCycleManager}.  Subclasses may override to provide a custom
    * manager implementation, but must take care to return the same manager
    * object for each call to this method.
-   * <p>
+   * <p/>
    * This is exposed primarily to support instrumentation for unit testing.
-   * 
-   * @return manager object 
+   *
+   * @return manager object
    */
   synchronized GafferLifeCycleManager getLifeCycleManager() {
     if (lifeCycleManager == null) {
@@ -175,7 +171,7 @@ public abstract class GafferContextBase<BK> implements GafferContext<BK>, Gaffer
     }
     return lifeCycleManager;
   }
-  
+
   @Override
   public String toString() {
     return name;

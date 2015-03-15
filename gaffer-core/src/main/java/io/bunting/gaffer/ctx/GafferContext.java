@@ -19,51 +19,50 @@ import io.bunting.gaffer.status.StatusManager;
 
 /**
  * A context is the main anchorage point of all logback components.
- * 
+ *
  * @author Ceki Gulcu
- * 
  */
-public interface GafferContext<BK>
-{
+public interface GafferContext<BK> {
 
-	/**
-	 * Validate that the provided type is valid for the giving binding key. It
-	 * is perfectly valid for an implementation to do nothing with this method.
-	 * @param bindingKey
-	 * @param type
-	 */
-	void validateBindingType(BK bindingKey, Class<?> type);
+  /**
+   * Validate that the provided type is valid for the giving binding key. It
+   * is perfectly valid for an implementation to do nothing with this method.
+   *
+   * @param bindingKey
+   * @param type
+   */
+  void validateBindingType(BK bindingKey, Class<?> type);
 
-	/**
-	 * Registers a provider with a given binding key.
-	 *
-	 * @param bindingKey
-	 * @param provider
-	 */
-	void register(BK bindingKey, Provider<?> provider);
+  /**
+   * Registers a provider with a given binding key.
+   *
+   * @param bindingKey
+   * @param provider
+   */
+  void register(BK bindingKey, Provider<?> provider);
 
-	/**
-	 * Access the provider that has been registered with a given binding key.
-	 *
-	 * @param bindingKey
-	 * @param type
-	 * @param <T>
-	 * @return
-	 */
-	<T> Provider<T> access(BK bindingKey, Class<T> type);
+  /**
+   * Access the provider that has been registered with a given binding key.
+   *
+   * @param bindingKey
+   * @param type
+   * @param <T>
+   * @return
+   */
+  <T> Provider<T> access(BK bindingKey, Class<T> type);
 
-	/**
-	 * Used by gffr to delegate object instantiation to the configurable component.
-	 *
-	 * @param type
-	 * @param <T>
-	 * @return
-	 */
-	<T> T instantiate(Class<T> type);
+  /**
+   * Used by gffr to delegate object instantiation to the configurable component.
+   *
+   * @param type
+   * @param <T>
+   * @return
+   */
+  <T> T instantiate(Class<T> type);
 
   /**
    * Return the StatusManager instance in use.
-   * 
+   *
    * @return the {@link io.bunting.gaffer.status.StatusManager} instance in use.
    */
   StatusManager getStatusManager();
@@ -80,34 +79,34 @@ public interface GafferContext<BK>
 
   /**
    * Contexts are named objects.
-   * 
+   *
    * @return the name for this context
    */
   String getName();
 
   /**
    * The name of the context can be set only once.
-   * 
+   *
    * @param name
    */
   void setName(String name);
-  
+
   /**
    * The time at which this context was created, expressed in
    * millisecond elapsed since the epoch (1.1.1970).
-   * 
+   *
    * @return The time as measured when this class was created.
    */
   long getBirthTime();
-  
+
   /**
    * Register a component that participates in the context's life cycle.
-   * <p>
+   * <p/>
    * All components registered via this method will be stopped and removed
    * from the context when the context is reset.
-   * 
+   *
    * @param component the subject component
    */
   void register(GafferLifeCycle component);
-  
+
 }

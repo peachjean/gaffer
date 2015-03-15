@@ -14,22 +14,19 @@ import org.codehaus.groovy.control.CompilerConfiguration;
 /**
  * TODO: Document this class
  */
-public class Gaffer
-{
-	final Path configLocation;
+public class Gaffer {
+  final Path configLocation;
 
-	public Gaffer(final Path configLocation)
-	{
-		this.configLocation = configLocation;
-	}
+  public Gaffer(final Path configLocation) {
+    this.configLocation = configLocation;
+  }
 
-	public <BK> void loadConfiguredObjects(GafferContext<BK> context) throws IOException
-	{
-		final CompilerConfiguration compilerConfiguration = new CompilerConfiguration();
-		compilerConfiguration.setScriptBaseClass(GafferBaseScript.class.getName());
-		final Binding binding = new Binding();
-		binding.setProperty("context", context);
-		final GroovyShell shell = new GroovyShell(Gaffer.class.getClassLoader(), binding, compilerConfiguration);
-		shell.evaluate(Files.newBufferedReader(configLocation, StandardCharsets.UTF_8), configLocation.getFileName().toString());
-	}
+  public <BK> void loadConfiguredObjects(GafferContext<BK> context) throws IOException {
+    final CompilerConfiguration compilerConfiguration = new CompilerConfiguration();
+    compilerConfiguration.setScriptBaseClass(GafferBaseScript.class.getName());
+    final Binding binding = new Binding();
+    binding.setProperty("context", context);
+    final GroovyShell shell = new GroovyShell(Gaffer.class.getClassLoader(), binding, compilerConfiguration);
+    shell.evaluate(Files.newBufferedReader(configLocation, StandardCharsets.UTF_8), configLocation.getFileName().toString());
+  }
 }

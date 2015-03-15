@@ -13,11 +13,12 @@
  */
 package io.bunting.gaffer.ctx;
 
-public interface GafferLifeCycle
-{
+public interface GafferLifeCycle {
 
   void start();
+
   void stop();
+
   boolean isStarted();
 
 }

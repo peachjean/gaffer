@@ -29,7 +29,7 @@ public class BasicStatusManager implements StatusManager {
   // protected access was requested in http://jira.qos.ch/browse/LBCORE-36
   final protected List<Status> statusList = new ArrayList<Status>();
   final protected CyclicBuffer<Status> tailBuffer = new CyclicBuffer<Status>(
-      TAIL_SIZE);
+          TAIL_SIZE);
   final protected GffrLock statusListLock = new GffrLock();
 
   int level = Status.INFO;
@@ -47,9 +47,8 @@ public class BasicStatusManager implements StatusManager {
 
   /**
    * Add a new status object.
-   * 
-   * @param newStatus
-   *                the status message to add
+   *
+   * @param newStatus the status message to add
    */
   public void add(Status newStatus) {
     // LBCORE-72: fire event before the count check
@@ -104,13 +103,14 @@ public class BasicStatusManager implements StatusManager {
 
   /**
    * This implementation does not allow duplicate installations of OnConsoleStatusListener
+   *
    * @param listener
    */
   public void add(StatusListener listener) {
     synchronized (statusListenerListLock) {
-      if(listener instanceof OnConsoleStatusListener) {
-        boolean alreadyPresent =  checkForPresence(statusListenerList, listener.getClass());
-        if(alreadyPresent)
+      if (listener instanceof OnConsoleStatusListener) {
+        boolean alreadyPresent = checkForPresence(statusListenerList, listener.getClass());
+        if (alreadyPresent)
           return;
       }
       statusListenerList.add(listener);
@@ -118,8 +118,8 @@ public class BasicStatusManager implements StatusManager {
   }
 
   private boolean checkForPresence(List<StatusListener> statusListenerList, Class<?> aClass) {
-    for(StatusListener e: statusListenerList) {
-      if(e.getClass() == aClass)
+    for (StatusListener e : statusListenerList) {
+      if (e.getClass() == aClass)
         return true;
     }
     return false;

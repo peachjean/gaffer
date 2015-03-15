@@ -13,8 +13,7 @@
  */
 package io.bunting.gaffer.util;
 
-public class CoreConstants
-{
+public class CoreConstants {
 
   /**
    * Maximum number of threads to allow in a context's executor service.
@@ -123,10 +122,9 @@ public class CoreConstants
 
   public static final String SAFE_JORAN_CONFIGURATION = "SAFE_JORAN_CONFIGURATION";
   public static final String XML_PARSING = "XML_PARSING";
-  
+
   // Context Object name for the shutdown hook
   public static final String SHUTDOWN_HOOK_THREAD = "SHUTDOWN_HOOK";
-
 
 
   /**
@@ -144,10 +142,10 @@ public class CoreConstants
 
   public static final int BYTES_PER_INT = 4;
   public static final int MILLIS_IN_ONE_SECOND = 1000;
-  public static final int MILLIS_IN_ONE_MINUTE = MILLIS_IN_ONE_SECOND*60;
-  public static final int MILLIS_IN_ONE_HOUR = MILLIS_IN_ONE_MINUTE*60;
-  public static final int MILLIS_IN_ONE_DAY = MILLIS_IN_ONE_HOUR*24;
-  public static final int MILLIS_IN_ONE_WEEK = MILLIS_IN_ONE_DAY*7;
+  public static final int MILLIS_IN_ONE_MINUTE = MILLIS_IN_ONE_SECOND * 60;
+  public static final int MILLIS_IN_ONE_HOUR = MILLIS_IN_ONE_MINUTE * 60;
+  public static final int MILLIS_IN_ONE_DAY = MILLIS_IN_ONE_HOUR * 24;
+  public static final int MILLIS_IN_ONE_WEEK = MILLIS_IN_ONE_DAY * 7;
 
   /**
    * The number of seconds to wait for compression jobs to finish.
@@ -163,6 +161,6 @@ public class CoreConstants
 
   public static final String UNDEFINED_PROPERTY_SUFFIX = "_IS_UNDEFINED";
 
-  public static final String LEFT_ACCOLADE = new String(new char[] {CURLY_LEFT});
-  public static final String RIGHT_ACCOLADE = new String(new char[] {CURLY_RIGHT});
+  public static final String LEFT_ACCOLADE = new String(new char[]{CURLY_LEFT});
+  public static final String RIGHT_ACCOLADE = new String(new char[]{CURLY_RIGHT});
 }

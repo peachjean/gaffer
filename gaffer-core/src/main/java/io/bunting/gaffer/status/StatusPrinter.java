@@ -24,12 +24,11 @@ import io.bunting.gaffer.util.ThrowableToStringArray;
 
 import static io.bunting.gaffer.status.StatusUtil.filterStatusListByTimeThreshold;
 
-public class StatusPrinter
-{
+public class StatusPrinter {
   private static PrintStream ps = System.out;
 
   static CachingDateFormatter cachingDateFormat = new CachingDateFormatter(
-      "HH:mm:ss,SSS");
+          "HH:mm:ss,SSS");
 
   public static void setPrintStream(PrintStream printStream) {
     ps = printStream;
@@ -59,7 +58,7 @@ public class StatusPrinter
     StatusManager sm = context.getStatusManager();
     if (sm == null) {
       ps.println("WARN: Context named \"" + context.getName()
-          + "\" has no status manager");
+              + "\" has no status manager");
     } else {
       StatusUtil statusUtil = new StatusUtil(context);
       if (statusUtil.getHighestLevel(threshold) >= ErrorStatus.WARN) {
@@ -82,7 +81,7 @@ public class StatusPrinter
     StatusManager sm = context.getStatusManager();
     if (sm == null) {
       ps.println("WARN: Context named \"" + context.getName()
-          + "\" has no status manager");
+              + "\" has no status manager");
     } else {
       StatusUtil statusUtil = new StatusUtil(context);
       if (statusUtil.getHighestLevel(0) == ErrorStatus.ERROR) {
@@ -100,23 +99,24 @@ public class StatusPrinter
     print(context, 0);
   }
 
-   /**
+  /**
    * Print context's status data with a timestamp higher than the threshold.
+   *
    * @param context
    */
-   public static void print(GafferContext context, long threshold) {
-     if (context == null) {
-       throw new IllegalArgumentException("Context argument cannot be null");
-     }
+  public static void print(GafferContext context, long threshold) {
+    if (context == null) {
+      throw new IllegalArgumentException("Context argument cannot be null");
+    }
 
-     StatusManager sm = context.getStatusManager();
-     if (sm == null) {
-       ps.println("WARN: Context named \"" + context.getName()
-           + "\" has no status manager");
-     } else {
-       print(sm, threshold);
-     }
-   }
+    StatusManager sm = context.getStatusManager();
+    if (sm == null) {
+      ps.println("WARN: Context named \"" + context.getName()
+              + "\" has no status manager");
+    } else {
+      print(sm, threshold);
+    }
+  }
 
   public static void print(StatusManager sm) {
     print(sm, 0);
@@ -138,9 +138,9 @@ public class StatusPrinter
 
 
   private static void buildStrFromStatusList(StringBuilder sb, List<Status> statusList) {
-    if(statusList == null)
+    if (statusList == null)
       return;
-    for(Status s : statusList) {
+    for (Status s : statusList) {
       buildStr(sb, "", s);
     }
   }

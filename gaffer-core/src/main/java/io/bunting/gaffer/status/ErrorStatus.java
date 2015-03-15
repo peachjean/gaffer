@@ -14,9 +14,8 @@
 package io.bunting.gaffer.status;
 
 
-
 public class ErrorStatus extends StatusBase {
-  
+
   public ErrorStatus(String msg, Object origin) {
     super(ERROR, msg, origin);
   }
@@ -25,4 +24,4 @@ public class ErrorStatus extends StatusBase {
     super(ERROR, msg, origin, t);
   }
 
- }
+}
