@@ -1,4 +1,4 @@
-allprojects  {
+allprojects {
   apply plugin: 'maven'
   apply plugin: 'jacoco'
 
@@ -6,20 +6,20 @@ allprojects  {
   group = 'net.peachjean.gaffer'
   version = '0.1.0-SNAPSHOT'
 
-	repositories {
-		mavenLocal()
+  repositories {
+    mavenLocal()
 
-		maven { url "http://repo.maven.apache.org/maven2" }
-	}
+    maven { url "http://repo.maven.apache.org/maven2" }
+  }
 }
 buildscript {
-	repositories {
-		mavenCentral()
-	}
+  repositories {
+    mavenCentral()
+  }
 
-	dependencies {
-		classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
-	}
+  dependencies {
+    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+  }
 }
 
 apply plugin: 'com.github.kt3k.coveralls'
@@ -39,38 +39,38 @@ subprojects {
 
 task codeCoverageReport(type: JacocoReport) {
 
-	// Gather execution data from all subprojects
-	// (change this if you e.g. want to calculate unit test/integration test coverage separately)
-	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+  // Gather execution data from all subprojects
+  // (change this if you e.g. want to calculate unit test/integration test coverage separately)
+  executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 
-	// Add all relevant sourcesets from the subprojects
-	subprojects.each {
-		sourceSets it.sourceSets.main
-	}
+  // Add all relevant sourcesets from the subprojects
+  subprojects.each {
+    sourceSets it.sourceSets.main
+  }
 
-	reports {
-		xml.enabled true
-		html.enabled true
-		html.destination "${buildDir}/reports/jacoco"
-		csv.enabled false
-	}
+  reports {
+    xml.enabled true
+    html.enabled true
+    html.destination "${buildDir}/reports/jacoco"
+    csv.enabled false
+  }
 }
 
 // always run the tests before generating the report
 codeCoverageReport.dependsOn {
-	subprojects*.test
+  subprojects*.test
 }
 
 coveralls {
-	sourceDirs = subprojects.sourceSets.main.allSource.srcDirs.flatten()
-	print sourceDirs
-	jacocoReportPath = "${buildDir}/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+  sourceDirs = subprojects.sourceSets.main.allSource.srcDirs.flatten()
+  print sourceDirs
+  jacocoReportPath = "${buildDir}/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
 }
 
 tasks.coveralls {
-	group = 'Coverage reports'
-	description = 'Uploads the aggregated coverage report to Coveralls'
+  group = 'Coverage reports'
+  description = 'Uploads the aggregated coverage report to Coveralls'
 
-	dependsOn codeCoverageReport
-	onlyIf { System.env.'CI' }
+  dependsOn codeCoverageReport
+  onlyIf { System.env.'CI' }
 }
