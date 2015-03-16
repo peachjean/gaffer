@@ -1,31 +1,20 @@
-/**
- * Logback: the reliable, generic, fast and flexible logging framework.
- * Copyright (C) 1999-2015, QOS.ch. All rights reserved.
- *
- * This program and the accompanying materials are dual-licensed under
- * either the terms of the Eclipse Public License v1.0 as published by
- * the Eclipse Foundation
- *
- *   or (per the licensee's choosing)
- *
- * under the terms of the GNU Lesser General Public License version 2.1
- * as published by the Free Software Foundation.
- */
 package io.bunting.gaffer
 
-import io.bunting.gaffer.ctx.GafferContextAwareBase
+import javax.inject.Provider
+import java.beans.Introspector
 
 /**
- * @author Ceki G&uuml;c&uuml;
+ * TODO: Document this class
  */
-class BindingDelegate<BK> extends GafferContextAwareBase<BK> {
-
+class BindingDelegate {
   final Object component;
+  final Map<String, Provider<?>> context;
 
   final List fieldsToCascade = [];
 
-  BindingDelegate(Object component) {
+  BindingDelegate(Object component, Map<String, Provider<?>> context) {
     this.component = component;
+    this.context = context
   }
 
   String getLabel() { "component" }
@@ -49,18 +38,14 @@ class BindingDelegate<BK> extends GafferContextAwareBase<BK> {
         subComponent.name = subComponentName;
       }
       if (closure) {
-        BindingDelegate subDelegate = new BindingDelegate(subComponent)
+        BindingDelegate subDelegate = new BindingDelegate(subComponent, context)
 
         cascadeFields(subDelegate)
-        subDelegate.context = context
         injectParent(subComponent)
         closure.delegate = subDelegate
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure()
       }
-//      if (subComponent instanceof LifeCycle && NoAutoStartUtil.notMarkedWithNoAutoStart(subComponent)) {
-//        subComponent.start();
-//      }
       PropertyUtil.attach(nestingType, component, subComponent, name)
     } else {
       addError("No 'class' argument specified for [${name}] in ${getLabel()} ${getComponentName()} of type [${component.getClass().canonicalName}]");
@@ -68,14 +53,8 @@ class BindingDelegate<BK> extends GafferContextAwareBase<BK> {
   }
 
   void cascadeFields(BindingDelegate subDelegate) {
-    for (String k : fieldsToCascade) {
+    for (String k: fieldsToCascade) {
       subDelegate.metaClass."${k}" = this."${k}"
-    }
-  }
-
-  void injectParent(Object subComponent) {
-    if (subComponent.hasProperty("parent")) {
-      subComponent.parent = component;
     }
   }
 
@@ -88,6 +67,9 @@ class BindingDelegate<BK> extends GafferContextAwareBase<BK> {
     PropertyUtil.attach(nestingType, component, value, name)
   }
 
+  static void addError(String message) {
+    throw new GafferException(message);
+  }
 
   def analyzeArgs(Object[] args) {
     String name;
@@ -96,7 +78,6 @@ class BindingDelegate<BK> extends GafferContextAwareBase<BK> {
 
     if (args.size() > 3) {
       addError("At most 3 arguments allowed but you passed $args")
-      return [name, clazz, closure]
     }
 
     if (args[-1] instanceof Closure) {
@@ -144,11 +125,70 @@ class BindingDelegate<BK> extends GafferContextAwareBase<BK> {
 
   }
 
-  Object ref(BK bindingKey) {
-    return this.context.access(bindingKey, Object).get();
+  Object ref(String bindingKey)
+  {
+    return this.context.get(bindingKey).get();
   }
 
-  Object build(Class<?> type, Closure closure) {
+  Object build(Class<?> type, Closure closure)
+  {
     return GafferBaseScript.createProvider(this.context, type, closure).get()
+  }
+  /**
+   * TODO: Document this class
+   */
+  static enum NestingType {
+    NA, SINGLE, AS_COLLECTION;
+  }
+
+  static class PropertyUtil
+  {
+    static boolean hasAdderMethod(Object obj, String name) {
+      String addMethod = "add${upperCaseFirstLetter(name)}";
+      return obj.metaClass.respondsTo(obj, addMethod);
+    }
+
+    static NestingType nestingType(Object obj, String name) {
+      def decapitalizedName = Introspector.decapitalize(name)
+      if (obj.hasProperty(decapitalizedName)) {
+        return NestingType.SINGLE;
+      }
+      if (hasAdderMethod(obj, name)) {
+        return NestingType.AS_COLLECTION;
+      }
+      return NestingType.NA;
+    }
+
+    static void attach(NestingType nestingType, Object component, Object subComponent, String name) {
+      switch (nestingType) {
+        case NestingType.SINGLE:
+          name = Introspector.decapitalize(name)
+          component."${name}" = subComponent;
+          break;
+        case NestingType.AS_COLLECTION:
+          String firstUpperName = upperCaseFirstLetter(name)
+          component."add${firstUpperName}"(subComponent);
+          break;
+      }
+    }
+
+    static String transformFirstLetter(String s, Closure closure) {
+      if (s == null || s.length() == 0)
+        return s;
+
+      String firstLetter = new String(s.getAt(0));
+
+      String modifiedFistLetter = closure(firstLetter);
+
+      if (s.length() == 1)
+        return modifiedFistLetter
+      else
+        return modifiedFistLetter + s.substring(1);
+
+    }
+
+    static String upperCaseFirstLetter(String s) {
+      return transformFirstLetter(s, {String it -> it.toUpperCase()})
+    }
   }
 }
